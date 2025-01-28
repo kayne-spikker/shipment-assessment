@@ -42,6 +42,8 @@ class OrderController extends Controller
      */
     public function show(Order $order): Response
     {
+        $order->load('billingAddress', 'deliveryAddress', 'orderLines');
+
         return Inertia::render('Order/Show', ['order' => $order]);
     }
 

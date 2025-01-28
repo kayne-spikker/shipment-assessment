@@ -26,22 +26,6 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
                         Orders
                       </Link></div>
                 </div>
-
-                <div
-                    class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
-                >
-                    <div class="p-6 text-gray-900">
-                      <PrimaryButton class="w-full flex items-center justify-center">Addresses</PrimaryButton>
-                    </div>
-                </div>
-
-                <div
-                    class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
-                >
-                  <div class="p-6 text-gray-900">
-                    <PrimaryButton class="w-full flex items-center justify-center">Order Lines</PrimaryButton>
-                  </div>
-                </div>
             </div>
         </div>
     </AuthenticatedLayout>
