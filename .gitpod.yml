@@ -9,6 +9,6 @@ ports:
 
 tasks:
   - init: composer install && npm install && npm run build
-    command: npm run dev && php -S 0.0.0.0:8000 -t public/
+    command: php -S 0.0.0.0:8000 -t public/
 
 
