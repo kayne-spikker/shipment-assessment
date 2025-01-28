@@ -6,6 +6,9 @@
 ports:
   - port: 8000
     onOpen: open-preview
+  - port: 1025
+  - port: 1080
+    onOpen: open-preview
 
 tasks:
   - init: composer install && npm install && npm run build

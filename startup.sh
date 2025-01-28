@@ -3,6 +3,8 @@
 # Exit immediately if any command exits with a non-zero status
 set -e
 
+gem install mailcatcher
+
 # Create a .env file if it doesn't already exist
 if [ ! -f .env ]; then
     echo "Creating .env file with APP_KEY=..."
@@ -28,3 +30,5 @@ php artisan view:cache
 # Start PHP built-in server
 echo "Starting PHP built-in server on 0.0.0.0:8000..."
 php -S 0.0.0.0:8000 -t public/
+
+mailcatcher
