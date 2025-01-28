@@ -11,7 +11,7 @@ ports:
     onOpen: open-preview
 
 tasks:
-  - init: composer install && npm install && npm run build
+  - init: gem install mailcatcher && composer install && npm install && npm run build
     command: sh ./startup.sh
 
 
