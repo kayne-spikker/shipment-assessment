@@ -1,35 +1,43 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import {nextTick, ref} from 'vue';
+import { Head, useForm } from '@inertiajs/vue3';
+import {ref, watchEffect} from 'vue';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import InputError from "@/Components/InputError.vue";
 import Modal from "@/Components/Modal.vue";
-import TextInput from "@/Components/TextInput.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
-import InputLabel from "@/Components/InputLabel.vue";
 
-defineProps({
+const props = defineProps({
   order: {
-    type: Array,
+    type: Object,
     default: () => [],
   },
+  Shipment: {
+    type: Object,
+    default: () => [],
+  },
+  Error: {
+    type: String,
+  }
 });
 
 const confirmingShipmentCreation = ref(false);
-const numberInput = ref(null);
+const orderId = ref(null);
+
+watchEffect(() => {
+  orderId.value = props.order.id;
+});
 
 const form = useForm({
-  number: '',
+  orderId: orderId,
 });
 
 const confirmShipmentCreation = () => {
   confirmingShipmentCreation.value = true;
 };
 
-const createShipment = () => {
-  form.post(route('shipment.create'), {
+const createShipment = async () => {
+  form.post(route('orders.shipment.create'), {
     preserveScroll: true,
     onSuccess: () => closeModal(),
     onFinish: () => form.reset(),
@@ -57,6 +65,16 @@ const closeModal = () => {
     </template>
 
     <div class="py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <!-- If a shipment exists, show the shipment details -->
+      <div v-if="order.shipment">
+        <h3>Shipment Details</h3>
+        <p><strong>Label:</strong> {{ order.shipment.label }}</p>
+        <p><strong>Tracking URL:</strong> <a :href="order.shipment.tracking_url" target="_blank">Track Shipment</a></p>
+      </div>
+      <!-- If no shipment exists, show a message -->
+      <div v-else>
+        <p>No shipment has been created for this order yet.</p>
+      </div>
       <div class="grid grid-cols-1 gap-6">
         <div
             class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
