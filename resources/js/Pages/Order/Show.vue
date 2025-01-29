@@ -12,10 +12,6 @@ const props = defineProps({
     type: Object,
     default: () => [],
   },
-  Shipment: {
-    type: Object,
-    default: () => [],
-  },
   Error: {
     type: String,
   }
@@ -37,7 +33,7 @@ const confirmShipmentCreation = () => {
 };
 
 const createShipment = async () => {
-  form.post(route('orders.shipment.create'), {
+  form.post(route('orders.shipment.create', {order: orderId.value}), {
     preserveScroll: true,
     onSuccess: () => closeModal(),
     onFinish: () => form.reset(),
@@ -49,6 +45,18 @@ const closeModal = () => {
 
   form.clearErrors();
   form.reset();
+};
+
+const downloadPDF = async () => {
+  // Construct the URL for downloading the PDF
+  const url = route('shipment.download', { order: orderId.value });
+
+  try {
+    // Use `window.open` to trigger the download
+    window.open(url, '_blank');
+  } catch (error) {
+    console.error('Error downloading PDF:', error);
+  }
 };
 </script>
 
@@ -111,9 +119,14 @@ const closeModal = () => {
           <div class="p-6 text-gray-900">
             <!-- If a shipment exists, show the shipment details -->
             <div v-if="order.shipment">
-              <h3>Shipment Details</h3>
-              <p><strong>Label:</strong> {{ order.shipment.label }}</p>
-              <p><strong>Tracking URL:</strong> <a :href="order.shipment.tracking_url" target="_blank">Track Shipment</a></p>
+              <h3 class="mb-3">Shipment Details:</h3>
+              <p><strong>Tracking URL:</strong> <a :href="order.shipment.tracking_url" target="_blank" class="text-yellow-500 hover:text-yellow-600 underline">Track Shipment</a></p>
+              <div v-if="order.shipment.complete_label" class="mt-6 text-gray-900">
+                <SecondaryButton @click="downloadPDF" class="flex items-center justify-center text-yellow-500 hover:text-yellow-600">Download Ship-Slip</SecondaryButton>
+              </div>
+              <div v-else class="mt-6 text-gray-900">
+                Ship-Slip queued to generate. Come back later.
+              </div>
             </div>
             <!-- If no shipment exists, show a message -->
             <div v-else>
