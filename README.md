@@ -10,6 +10,14 @@ The purpose of this project is to interact with an external API managed by **QLS
 
 At some points, this project became quite a passion project for me. I wanted to create something that was visually engaging, something that could show the process in a tangible way. While I enjoyed working on it, there are definitely areas I would improve upon if I had more time.
 
+## Reasoning for My Approach
+
+I chose the **Laravel** framework for this project because it was something I used to work with daily, but hadn’t touched in about two years. I was curious to see how challenging it would be to get back into it. While I did encounter a few bumps—especially with keeping up with newer developments—I’m glad I invested the time into re-learning and working with it again.
+
+As for the frontend, I decided to use **Vue.js**. This was a bit of a happy coincidence, as I hadn't worked with Vue much before, but I believed it would give me the flexibility I needed to bring my vision to life. My initial thought was to build upon a standard Laravel application foundation, and in the end, it turned out just as I envisioned—aside from the areas I mention later that I would improve with more time.
+
+For creating the README and pull requests, I took advantage of AI to save time. After all, who has the time to manually write markdown files these days? 😄
+
 ## Things I Would Do Differently
 
 1. **Refactor Monolithic PDF Processing Method:**
@@ -77,4 +85,4 @@ Follow these steps to get the project up and running:
      php artisan db:seed
      ```
 
-
+With these steps, you should be all set to work on the project. Happy coding!
