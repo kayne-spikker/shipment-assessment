@@ -66,6 +66,9 @@ And about 30 minutes in documentation, IE this readme and some simple code comme
 12. **Database:**
     - I would use a hosted Database, in other words, The current CDE setup is easy and fast. I would invest time in setting up the different services like Redis and Postgres
 
+13. **Automatic shipment creation:**
+    - I would automatically dispatch shipment creations to the job queue when a new order is received (if a priviliged user within the company, turns this on in the company settings). See 5.
+
 ## Notes on Every New Bootup
 
 Follow these steps to get the project up and running:
