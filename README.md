@@ -18,7 +18,7 @@ As for the frontend, I decided to use **Vue.js**. This was a bit of a happy coin
 
 I also chose to manipulate the existing PDF file, the section for things I would do differently explains some parts as to why. It mainly comes down to me believing it's more expandable and cleaner that way (given some time to refactor).
 
-For creating the README and pull requests, I took advantage of AI to save time. After all, who has the time to manually write markdown files these days? 😄
+For creating the README and pull request descriptions, I took advantage of AI to save time. After all, who has the time to manually write markdown files these days? 😄
 
 ## Time spent
 
