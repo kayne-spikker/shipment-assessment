@@ -20,6 +20,11 @@ I also chose to manipulate the existing PDF file, the section for things I would
 
 For creating the README and pull requests, I took advantage of AI to save time. After all, who has the time to manually write markdown files these days? 😄
 
+## Time spent
+
+As per the 29th of January, I have spent approximately 7 hours on front-end. Mainly due to me wanting to give a visual representation of my work.
+And about 5 hours on the backend, backend truly is nicer to work with than the frontend :o
+
 ## Things I Would Do Differently
 
 1. **Refactor Monolithic PDF Processing Method:**
