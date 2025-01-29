@@ -65,16 +65,6 @@ const closeModal = () => {
     </template>
 
     <div class="py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <!-- If a shipment exists, show the shipment details -->
-      <div v-if="order.shipment">
-        <h3>Shipment Details</h3>
-        <p><strong>Label:</strong> {{ order.shipment.label }}</p>
-        <p><strong>Tracking URL:</strong> <a :href="order.shipment.tracking_url" target="_blank">Track Shipment</a></p>
-      </div>
-      <!-- If no shipment exists, show a message -->
-      <div v-else>
-        <p>No shipment has been created for this order yet.</p>
-      </div>
       <div class="grid grid-cols-1 gap-6">
         <div
             class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
@@ -111,6 +101,25 @@ const closeModal = () => {
               </div>
             </div>
           </Modal>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 mt-6">
+        <div
+            class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
+        >
+          <div class="p-6 text-gray-900">
+            <!-- If a shipment exists, show the shipment details -->
+            <div v-if="order.shipment">
+              <h3>Shipment Details</h3>
+              <p><strong>Label:</strong> {{ order.shipment.label }}</p>
+              <p><strong>Tracking URL:</strong> <a :href="order.shipment.tracking_url" target="_blank">Track Shipment</a></p>
+            </div>
+            <!-- If no shipment exists, show a message -->
+            <div v-else>
+              <p class="w-full flex items-center justify-center">No shipment has been created</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

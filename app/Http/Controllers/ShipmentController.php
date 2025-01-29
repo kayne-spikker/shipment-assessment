@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessShipmentLabel;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Services\ShipmentApiService;
-use Inertia\{ Inertia, Response };
+use Inertia\{ Inertia };
 
 class ShipmentController extends Controller
 {
@@ -40,9 +41,8 @@ class ShipmentController extends Controller
         $order->shipment_id = $shipment->id;
         $order->save();
 
-        return Inertia::render('Order/Show', [
-            'order' => $order,
-            'shipment' => $shipmentData,
-        ]);
+        ProcessShipmentLabel::dispatch($order, $shipment)->onQueue('default');
+
+        return Inertia::location(route('orders.show', $order->id));
     }
 }
