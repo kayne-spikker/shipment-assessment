@@ -85,4 +85,7 @@ Follow these steps to get the project up and running:
      php artisan db:seed
      ```
 
-With these steps, you should be all set to work on the project. Happy coding!
+## Database
+
+<img width="381" alt="Screenshot 2025-01-29 at 22 51 33" src="https://github.com/user-attachments/assets/0e60ae5c-0f23-4108-8f76-79c8833524fa" />
+
