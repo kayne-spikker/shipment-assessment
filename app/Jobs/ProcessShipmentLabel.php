@@ -34,8 +34,7 @@ class ProcessShipmentLabel implements ShouldQueue
     {
         // Save the PDF we retrieve from the QLS API
         $cleanedOrderNumber = str_replace('#', '', $this->order->number);
-        $timestamp = $this->shipment->created_at->toDateString();
-        $filename = "{$cleanedOrderNumber}_{$timestamp}.pdf";
+        $filename = "{$cleanedOrderNumber}.pdf";
 
         $this->savePdfFromUrl($this->shipment->label, $filename);
 
@@ -44,7 +43,10 @@ class ProcessShipmentLabel implements ShouldQueue
 
         $orderLines = $this->order->orderLines->toArray();
 
-        $processedPdf = $this->addOrderDataToPdf($sourcePdfPath, $outputPdfPath, $orderLines);
+        $processedPdfPath = $this->addOrderDataToPdf($sourcePdfPath, $outputPdfPath, $orderLines);
+
+        $this->shipment->complete_label = $processedPdfPath;
+        $this->shipment->save();
     }
 
     public function savePdfFromUrl(string $fileUrl, string $filename)
@@ -112,20 +114,31 @@ class ProcessShipmentLabel implements ShouldQueue
 
             // Defines the data we're using from our order lines when creating the rows
             $allowedData = ['sku', 'ean', 'amount_ordered'];
+            $orderLineWidths = [
+                'sku' => 30,
+                'ean' => 50,
+                'amount_ordered' => 15,
+            ];
 
             // This loop inserts the rows of our table (the products ordered)
             foreach ($orderLines as $orderLine) {
-                $filteredOrderLine = array_intersect_key($orderLine, array_flip($allowedData));
+
+                // Filter $orderLine to keep only the allowed keys while maintaining the original order and keys.
+                $filteredOrderLine = array_combine(
+                    $allowedData,
+                    array_map(fn($key) => $orderLine[$key] ?? null, $allowedData)
+                );
+
                 $pdf->SetX($middleX + 5);
                 foreach ($filteredOrderLine as $key => $cell) {
-                    $pdf->Cell($columnWidths[$key], 10, $cell, 1, 0, 'C');
+                    $pdf->Cell($orderLineWidths[$key], 10, $cell, 1, 0, 'C');
                 }
                 $pdf->Ln();
             }
 
             // And finally we save the file
             $pdf->Output('F', $outputPdfPath);
-        } catch (\Exception) {
+        } catch (\Exception $e) {
             return false;
         }
 

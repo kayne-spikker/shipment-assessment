@@ -14,6 +14,7 @@ class Shipment extends Model
     protected $fillable = [
         'order_id',
         'label',
+        'complete_label',
         'tracking_url',
     ];
 

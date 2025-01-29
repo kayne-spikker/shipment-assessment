@@ -7,6 +7,7 @@ use App\Models\Shipment;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Services\ShipmentApiService;
+use Illuminate\Support\Facades\Response;
 use Inertia\{ Inertia };
 
 class ShipmentController extends Controller
@@ -42,6 +43,23 @@ class ShipmentController extends Controller
         $order->save();
 
         ProcessShipmentLabel::dispatch($order, $shipment)->onQueue('default');
+
+        return Inertia::location(route('orders.show', $order->id));
+    }
+
+    public function downloadPDF(Request $request): \Symfony\Component\HttpFoundation\Response
+    {
+        $orderId = $request->input('orderId');
+        $order = Order::with(['shipment'])->findOrFail($orderId);
+
+        //PDF file is stored under project/public/download/info.pdf
+        $file= public_path(). "/storage/output/{$order->number}.pdf";
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+
+        Response::download($file, "{$order->number}.pdf", $headers);
 
         return Inertia::location(route('orders.show', $order->id));
     }
