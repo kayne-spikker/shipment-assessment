@@ -34,7 +34,7 @@ class ShipmentController extends Controller
         }
 
         $shipment = Shipment::create([
-            'order_id' => $order->id, // Associate the shipment with the order
+            'order_id' => $order->id,
             'label' => $shipmentData['data']['labels']['a4']['offset_0'],
             'tracking_url' => $shipmentData['data']['shipments'][0]['tracking_url'],
         ]);
@@ -51,7 +51,7 @@ class ShipmentController extends Controller
     {
         $order = Order::with(['shipment'])->findOrFail($request->order);
         $filename = str_replace('#', '', $order->number);
-        //PDF file is stored under project/public/download/info.pdf
+
         $file= public_path(). "/storage/output/{$filename}.pdf";
 
         $headers = array(
@@ -59,7 +59,5 @@ class ShipmentController extends Controller
         );
 
         return Response::download($file, "{$filename}.pdf", $headers);
-
-        return Inertia::location(route('orders.show', $order->id));
     }
 }

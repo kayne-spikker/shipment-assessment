@@ -136,7 +136,7 @@ class ProcessShipmentLabel implements ShouldQueue
                 $pdf->Ln();
             }
 
-            // And finally we save the file
+            // Saving file
             $pdf->Output('F', $outputPdfPath);
         } catch (\Exception $e) {
             return false;
