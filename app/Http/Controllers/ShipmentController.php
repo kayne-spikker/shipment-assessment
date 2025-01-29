@@ -49,17 +49,16 @@ class ShipmentController extends Controller
 
     public function downloadPDF(Request $request): \Symfony\Component\HttpFoundation\Response
     {
-        $orderId = $request->input('orderId');
-        $order = Order::with(['shipment'])->findOrFail($orderId);
-
+        $order = Order::with(['shipment'])->findOrFail($request->order);
+        $filename = str_replace('#', '', $order->number);
         //PDF file is stored under project/public/download/info.pdf
-        $file= public_path(). "/storage/output/{$order->number}.pdf";
+        $file= public_path(). "/storage/output/{$filename}.pdf";
 
         $headers = array(
             'Content-Type: application/pdf',
         );
 
-        Response::download($file, "{$order->number}.pdf", $headers);
+        return Response::download($file, "{$filename}.pdf", $headers);
 
         return Inertia::location(route('orders.show', $order->id));
     }

@@ -33,7 +33,7 @@ const confirmShipmentCreation = () => {
 };
 
 const createShipment = async () => {
-  form.post(route('orders.shipment.create'), {
+  form.post(route('orders.shipment.create', {order: orderId.value}), {
     preserveScroll: true,
     onSuccess: () => closeModal(),
     onFinish: () => form.reset(),
@@ -45,6 +45,18 @@ const closeModal = () => {
 
   form.clearErrors();
   form.reset();
+};
+
+const downloadPDF = async () => {
+  // Construct the URL for downloading the PDF
+  const url = route('shipment.download', { order: orderId.value });
+
+  try {
+    // Use `window.open` to trigger the download
+    window.open(url, '_blank');
+  } catch (error) {
+    console.error('Error downloading PDF:', error);
+  }
 };
 </script>
 

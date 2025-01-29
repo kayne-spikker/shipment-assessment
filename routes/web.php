@@ -32,6 +32,10 @@ Route::post('/orders/{order}/create-shipment',
     [ShipmentController::class, 'create']
 )->middleware(['auth'])->name('orders.shipment.create');
 
+Route::get('/download-pdf/{order}',
+    [ShipmentController::class, 'downloadPDF']
+)->name('shipment.download');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
