@@ -53,7 +53,7 @@ For creating the README and pull requests, I took advantage of AI to save time. 
 11. **Email Updates for Customers:**
     - I would add checkboxes to the frontend for sending email updates to customers. For instance, when creating a shipment, users could check a box to send the customer an email with the tracking URL.
 
-## Notes on Bootup
+## Notes on Every New Bootup
 
 Follow these steps to get the project up and running:
 
