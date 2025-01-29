@@ -1,35 +1,36 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import {nextTick, ref} from 'vue';
+import { Head, useForm } from '@inertiajs/vue3';
+import {ref, watchEffect} from 'vue';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import InputError from "@/Components/InputError.vue";
 import Modal from "@/Components/Modal.vue";
-import TextInput from "@/Components/TextInput.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
-import InputLabel from "@/Components/InputLabel.vue";
 
-defineProps({
+const props = defineProps({
   order: {
-    type: Array,
+    type: Object,
     default: () => [],
   },
 });
 
 const confirmingShipmentCreation = ref(false);
-const numberInput = ref(null);
+const orderId = ref(null);
+
+watchEffect(() => {
+  orderId.value = props.order.id;
+});
 
 const form = useForm({
-  number: '',
+  orderId: orderId,
 });
 
 const confirmShipmentCreation = () => {
   confirmingShipmentCreation.value = true;
 };
 
-const createShipment = () => {
-  form.post(route('shipment.create'), {
+const createShipment = async () => {
+  form.post(route('orders.shipment.create'), {
     preserveScroll: true,
     onSuccess: () => closeModal(),
     onFinish: () => form.reset(),

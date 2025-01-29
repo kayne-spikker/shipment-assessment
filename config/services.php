@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'shipment_api' => [
+        'user' => env('SHIPMENT_API_USER'),
+        'pass' => env('SHIPMENT_API_PASS'),
+        'url' => env('SHIPMENT_API_URL'),
+    ],
 ];

@@ -1,10 +1,5 @@
 <?php
 
-use App\Http\Controllers\CsvFieldController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CsvUploadController;
+use App\Http\Controllers\ShipmentController;
 
-Route::middleware('api')->group(function () {
-    Route::post('user/upload', [CsvUploadController::class, 'upload'])->name('csv.upload');
-    Route::get('fields', [CsvFieldController::class, 'index']);
-});

@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
 defineProps({
   orders: {
@@ -8,12 +8,6 @@ defineProps({
     default: () => [],
   },
 });
-
-const form = useForm({});
-
-const deleteOrder = (id) => {
-  form.delete(`orders/${id}`);
-};
 </script>
 
 <template>
