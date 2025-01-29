@@ -1,6 +1,6 @@
 # Project Setup and Usage
 
-This project uses **Gitpod** as its Cloud Development Environment (CDE). Gitpod provides an instant, ready-to-code environment with everything you need to start working on this project. You can access Gitpod at [gitpod.io](https://gitpod.io).
+This project uses **Gitpod** as its Cloud Development Environment (CDE). [gitpod.io](https://gitpod.io).
 
 If you have the Gitpod Chrome extension installed, you can easily open this project and start tinkering with it yourself.
 
