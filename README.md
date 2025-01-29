@@ -23,7 +23,8 @@ For creating the README and pull requests, I took advantage of AI to save time. 
 ## Time spent
 
 As per the 29th of January, I have spent approximately 7 hours on front-end. Mainly due to me wanting to give a visual representation of my work.
-And about 5 hours on the backend, backend truly is nicer to work with than the frontend :o
+And about 5 hours on the backend, backend truly is nicer to work with than the frontend ;)
+And about 30 minutes in documentation, IE this readme and some simple code comments for the FPDI monolith.
 
 ## Things I Would Do Differently
 
