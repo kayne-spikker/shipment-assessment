@@ -16,6 +16,8 @@ I chose the **Laravel** framework for this project because it was something I us
 
 As for the frontend, I decided to use **Vue.js**. This was a bit of a happy coincidence, as I hadn't worked with Vue much before, but I believed it would give me the flexibility I needed to bring my vision to life. My initial thought was to build upon a standard Laravel application foundation, and in the end, it turned out just as I envisioned—aside from the areas I mention later that I would improve with more time.
 
+I also chose to manipulate the existing PDF file, the section for things I would do differently explains some parts as to why. It mainly comes down to me believing it's more expandable and cleaner that way (given some time to refactor).
+
 For creating the README and pull requests, I took advantage of AI to save time. After all, who has the time to manually write markdown files these days? 😄
 
 ## Things I Would Do Differently
