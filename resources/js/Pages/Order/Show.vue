@@ -12,6 +12,13 @@ const props = defineProps({
     type: Object,
     default: () => [],
   },
+  Shipment: {
+    type: Object,
+    default: () => [],
+  },
+  Error: {
+    type: String,
+  }
 });
 
 const confirmingShipmentCreation = ref(false);
@@ -58,6 +65,16 @@ const closeModal = () => {
     </template>
 
     <div class="py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <!-- If a shipment exists, show the shipment details -->
+      <div v-if="order.shipment">
+        <h3>Shipment Details</h3>
+        <p><strong>Label:</strong> {{ order.shipment.label }}</p>
+        <p><strong>Tracking URL:</strong> <a :href="order.shipment.tracking_url" target="_blank">Track Shipment</a></p>
+      </div>
+      <!-- If no shipment exists, show a message -->
+      <div v-else>
+        <p>No shipment has been created for this order yet.</p>
+      </div>
       <div class="grid grid-cols-1 gap-6">
         <div
             class="overflow-hidden bg-white shadow-sm sm:rounded-lg"

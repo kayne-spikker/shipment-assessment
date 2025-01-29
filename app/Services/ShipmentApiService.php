@@ -19,9 +19,8 @@ class ShipmentApiService
         $this->password = config('services.shipment_api.pass');
     }
 
-    public function newShipment(int $orderId)
+    public function newShipment(Order $order)
     {
-        $order = Order::with(['billingAddress', 'deliveryAddress', 'orderLines'])->findOrFail($orderId);
         $order = $order->toArray();
 
         // Usually brandId and companyId would be provided through dynamic data
