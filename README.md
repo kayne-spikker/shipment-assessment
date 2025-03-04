@@ -2,6 +2,8 @@
 
 This project uses **Gitpod** as its Cloud Development Environment (CDE). [gitpod.io](https://gitpod.io).
 
+This project (assessment) has a time limit approx. 10 hours.
+
 If you have the Gitpod Chrome extension installed, you can easily open this project and start tinkering with it yourself.
 
 ## Purpose of the Project
